@@ -1,0 +1,89 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            31:d7:04:0f:c9:25:d2:31:fe:f9:69:ad:dc:45:9d:ed
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN=FestivalsApp Development Root CA
+        Validity
+            Not Before: Oct 24 01:43:07 2023 GMT
+            Not After : Jan 26 01:43:07 2026 GMT
+        Subject: CN=FestivalsApp API Client Certificate
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:a7:b6:f8:7c:44:98:f5:96:3f:22:56:69:93:8a:
+                    e9:8f:87:36:0e:37:08:41:17:4b:e2:e4:bb:c1:7c:
+                    b3:ea:33:0e:c8:ae:d6:81:a0:d6:00:3d:10:a5:ad:
+                    5f:d0:69:6e:72:0b:a9:2c:b7:0b:a8:ef:94:27:f1:
+                    09:2b:24:0f:ce:c5:ef:35:67:ec:38:9c:72:ed:1d:
+                    02:54:04:66:25:c9:64:cf:a3:39:23:c9:49:00:83:
+                    6f:04:0f:56:28:df:05:66:80:6c:c9:45:a9:85:ca:
+                    23:ee:68:77:c9:55:7a:16:3b:de:09:53:a0:64:86:
+                    7f:51:b4:36:40:4d:ad:4f:95:85:94:94:df:dd:a3:
+                    81:9c:5e:dc:7c:f7:44:ef:05:69:15:b0:7b:2b:2c:
+                    ab:ac:c9:a7:78:b8:23:c4:27:50:99:05:00:19:2a:
+                    84:76:e9:15:1c:54:7c:8e:83:02:27:14:ef:7d:44:
+                    45:c6:bc:08:c3:cf:3a:a5:fa:3e:d1:81:b3:33:9d:
+                    c9:ed:b6:f5:ed:95:a4:a4:c3:aa:2b:b7:a8:6f:f5:
+                    d9:0f:83:dc:da:37:1c:2e:6b:f0:67:1e:c6:fe:ab:
+                    59:08:e4:00:f0:cf:60:3c:b7:61:fb:8b:9b:5d:85:
+                    42:29:08:b0:37:b9:50:53:28:36:17:75:10:1c:30:
+                    a8:dd
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                2D:F1:3B:F4:E8:F2:E4:69:96:B6:F3:6A:91:52:22:23:C4:34:F6:75
+            X509v3 Authority Key Identifier: 
+                keyid:05:96:7C:95:CC:92:FC:CE:8E:D8:C6:29:52:E7:9E:4C:D1:E2:82:E1
+                DirName:/CN=FestivalsApp Development Root CA
+                serial:1D:A9:2E:E5:AC:36:AF:C6:85:6A:C0:B4:D0:35:61:15:55:6D:CF:DC
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+            X509v3 Subject Alternative Name: 
+                DNS:FestivalsApp API Client Certificate
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        66:6d:28:ce:9d:20:3a:f6:70:11:af:5a:2b:47:cb:91:35:15:
+        20:7f:33:99:c2:06:b5:f4:47:c8:4d:62:8e:9f:95:86:99:fa:
+        27:eb:bb:89:e0:f4:b4:0b:a5:e2:cd:dc:43:30:17:2f:e5:0a:
+        95:fe:8b:44:3e:3e:26:29:20:1d:20:6b:f2:82:15:ce:3d:de:
+        45:0c:e0:9c:a8:24:24:c4:64:d0:55:3e:e2:19:d7:19:33:c8:
+        1a:49:bd:9c:98:b5:51:64:d0:46:1a:81:90:38:d5:6b:f1:53:
+        ec:c8:0f:b4:7f:7b:0a:35:ba:f2:91:0e:c8:b0:65:2f:68:46:
+        9b:ab:7e:ac:e6:6e:ff:9b:84:41:fc:45:03:87:fc:27:d0:e3:
+        20:61:7b:71:04:f2:6a:80:59:b7:ec:af:c4:71:79:24:a0:fe:
+        83:6f:74:37:6b:72:73:54:91:6f:4f:22:e3:ac:4f:ec:9e:05:
+        50:ec:97:43:b1:a2:c7:73:11:d1:b9:b7:2f:5a:76:82:dd:b9:
+        07:37:30:9a:84:93:c6:8a:d6:8d:45:5e:fa:7e:49:f8:83:6a:
+        58:c4:19:97:86:bb:2f:d0:4f:1e:79:e1:bc:98:c3:45:81:ce:
+        21:85:92:58:f6:b1:a9:a6:02:d2:d6:62:ea:13:21:55:4e:62:
+        4d:06:3a:95
+-----BEGIN CERTIFICATE-----
+MIID1TCCAr2gAwIBAgIQMdcED8kl0jH++Wmt3EWd7TANBgkqhkiG9w0BAQsFADAr
+MSkwJwYDVQQDDCBGZXN0aXZhbHNBcHAgRGV2ZWxvcG1lbnQgUm9vdCBDQTAeFw0y
+MzEwMjQwMTQzMDdaFw0yNjAxMjYwMTQzMDdaMC4xLDAqBgNVBAMMI0Zlc3RpdmFs
+c0FwcCBBUEkgQ2xpZW50IENlcnRpZmljYXRlMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEAp7b4fESY9ZY/IlZpk4rpj4c2DjcIQRdL4uS7wXyz6jMOyK7W
+gaDWAD0Qpa1f0GlucgupLLcLqO+UJ/EJKyQPzsXvNWfsOJxy7R0CVARmJclkz6M5
+I8lJAINvBA9WKN8FZoBsyUWphcoj7mh3yVV6FjveCVOgZIZ/UbQ2QE2tT5WFlJTf
+3aOBnF7cfPdE7wVpFbB7KyyrrMmneLgjxCdQmQUAGSqEdukVHFR8joMCJxTvfURF
+xrwIw886pfo+0YGzM53J7bb17ZWkpMOqK7eob/XZD4Pc2jccLmvwZx7G/qtZCOQA
+8M9gPLdh+4ubXYVCKQiwN7lQUyg2F3UQHDCo3QIDAQABo4HxMIHuMAkGA1UdEwQC
+MAAwHQYDVR0OBBYEFC3xO/To8uRplrbzapFSIiPENPZ1MGYGA1UdIwRfMF2AFAWW
+fJXMkvzOjtjGKVLnnkzR4oLhoS+kLTArMSkwJwYDVQQDDCBGZXN0aXZhbHNBcHAg
+RGV2ZWxvcG1lbnQgUm9vdCBDQYIUHaku5aw2r8aFasC00DVhFVVtz9wwHQYDVR0l
+BBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAsGA1UdDwQEAwIFoDAuBgNVHREEJzAl
+giNGZXN0aXZhbHNBcHAgQVBJIENsaWVudCBDZXJ0aWZpY2F0ZTANBgkqhkiG9w0B
+AQsFAAOCAQEAZm0ozp0gOvZwEa9aK0fLkTUVIH8zmcIGtfRHyE1ijp+Vhpn6J+u7
+ieD0tAul4s3cQzAXL+UKlf6LRD4+JikgHSBr8oIVzj3eRQzgnKgkJMRk0FU+4hnX
+GTPIGkm9nJi1UWTQRhqBkDjVa/FT7MgPtH97CjW68pEOyLBlL2hGm6t+rOZu/5uE
+QfxFA4f8J9DjIGF7cQTyaoBZt+yvxHF5JKD+g290N2tyc1SRb08i46xP7J4FUOyX
+Q7Gix3MR0bm3L1p2gt25BzcwmoSTxorWjUVe+n5J+INqWMQZl4a7L9BPHnnhvJjD
+RYHOIYWSWPaxqaYC0tZi6hMhVU5iTQY6lQ==
+-----END CERTIFICATE-----
