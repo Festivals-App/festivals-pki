@@ -9,4 +9,8 @@ build:
 	go build
 
 test:
-	 go test
+	 go test -v
+
+coverage:
+	 go test -coverprofile=coverage_report.out
+	 go tool cover -html=coverage_report.out
