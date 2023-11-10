@@ -1,3 +1,3 @@
-module Festivals-App/festivals-pki
+module github.com/Festivals-App/festivals-pki
 
 go 1.21.3

@@ -8,10 +8,10 @@ import (
 	"os"
 )
 
-// LoadServerCertificates will attempt to load the server certificate chain.
-func LoadServerCertificates(serverCert string, serverKey string, rootCACert string) func(hello *tls.ClientHelloInfo) (*tls.Certificate, error) {
+// LoadServerCertificatesHandler will return a function that loads the server certificate chain based on the given ClientHelloInfo.
+func LoadServerCertificateHandler(serverCert string, serverKey string, rootCACert string) func(hello *tls.ClientHelloInfo) (*tls.Certificate, error) {
 	return func(hello *tls.ClientHelloInfo) (*tls.Certificate, error) {
-
+		// ClientHelloInfo is not used, just try to load the local certificates
 		certificate, err := tls.LoadX509KeyPair(serverCert, serverKey)
 		if err != nil {
 			return nil, errors.New("Failed to load server certificate and key with error: " + err.Error())
@@ -24,6 +24,21 @@ func LoadServerCertificates(serverCert string, serverKey string, rootCACert stri
 		certificate.Certificate = append(certificate.Certificate, rootCACert.Raw)
 		return &certificate, err
 	}
+}
+
+// LoadServerCertificates will attempt to load the server certificate chain.
+func LoadServerCertificates(serverCert string, serverKey string, rootCACert string) (*tls.Certificate, error) {
+	certificate, err := tls.LoadX509KeyPair(serverCert, serverKey)
+	if err != nil {
+		return nil, errors.New("Failed to load server certificate and key with error: " + err.Error())
+	}
+	rootCACertificate, rootErr := LoadX509Certificate(rootCACert)
+	if rootErr != nil {
+		return nil, errors.New("Failed to load FestivalsApp Root CA certificate with error: " + err.Error())
+
+	}
+	certificate.Certificate = append(certificate.Certificate, rootCACertificate.Raw)
+	return &certificate, err
 }
 
 // LoadX509Certificate reads and parses a certificate from a .crt file.
