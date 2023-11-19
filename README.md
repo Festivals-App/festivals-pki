@@ -36,11 +36,12 @@ The idea is that every party that is communicating with each other needs a certi
 # installing the easy-rsa on macOS
 brew install easy-rsa
 
-# init the pki and create our CA
+# init the pki
 easyrsa init-pki
+# Create our root CA certificate (use at least a 40 character random password for the key file)
 easyrsa build-ca
 ```
-On macOS this will create all neccessary file at `/opt/homebrew/etc/pki`
+On macOS this will create all neccessary files at `/opt/homebrew/etc/pki`
 
 2. To create a certificate/key pair for inter-service communication we first create a certificate request with the name of the service node and then sign the request.
 ```bash
