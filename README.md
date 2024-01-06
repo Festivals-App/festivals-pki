@@ -53,6 +53,12 @@ Common Name (eg: your user, host, or server name): <UNIQUE_SERVER_DOMAIN_NAME>
 easyrsa sign-req serverClient <UNIQUE_SERVER_NAME>
 ```
 
+2.1 Optionally convert certificates and keys to PEM format (for example for usage with mysql)
+```bash
+openssl x509 -in cert.crt -out cert.pem -outform PEM
+openssl rsa -in cert.key -text > cert-key.pem
+```
+
 3. Copy the certificate/key pair to server and move them to their designated location
 ```bash
 scp <path/to/cert/key> <user>@<server>:/home/<user>
@@ -71,6 +77,7 @@ If you want to test on your local machine
 sudo nano /etc/hosts
 ```bash
 # local development on this machine
+127.0.0.1       gateway.festivalsapp.dev
 127.0.0.1       identity-0.festivalsapp.dev
 127.0.0.1       festivals-0.festivalsapp.dev
 127.0.0.1       database-0.festivalsapp.dev
@@ -80,7 +87,6 @@ sudo nano /etc/hosts
 127.0.0.1       festivalsapp.dev
 127.0.0.1       www.festivalsapp.dev
 127.0.0.1       website.festivalsapp.dev
-127.0.0.1       gateway.festivalsapp.dev
 127.0.0.1       discovery.festivalsapp.dev
 127.0.0.1       api.festivalsapp.dev
 127.0.0.1       files.festivalsapp.dev
@@ -91,13 +97,13 @@ If you have an development server in your private network
 
 ```bash
 # local development server for festivalsapp
+<ip address>        gateway.festivalsapp.home
 <ip address>	      identity-0.festivalsapp.home
 <ip address>	      festivals-0.festivalsapp.home
 <ip address>	      festivals-1.festivalsapp.home
 <ip address>	      database-0.festivalsapp.home
 <ip address>        fileserver-0.festivalsapp.home
 <ip address>        website-0.festivalsapp.home
-<ip address>        gateway.festivalsapp.home
 
 <gateway ip address>            festivalsapp.home
 <gateway ip address>            www.festivalsapp.home
@@ -113,7 +119,6 @@ Add the FestivalsaApp Root CA certificate to the trusted root certificates:
 
 ### macOS
 ```bash
-
 sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/new-root-certificate.crt
 ```
 ### Linux (Ubuntu)
@@ -135,7 +140,7 @@ The following channels are available for discussions, feedback, and support requ
 
 ## Licensing
 
-Copyright (c) 2023 Simon Gaus.
+Copyright (c) 2023-2024 Simon Gaus.
 
 Licensed under the **GNU Lesser General Public License v3.0** (the "License"); you may not use this file except in compliance with the License.
 
