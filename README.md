@@ -62,7 +62,7 @@ sudo mv </old/cert/location> <new/cert/key/location>
 4. Make the files accessible to the processes and set proper access permissions for certificates and keys
 ```bash
 sudo chown <server-user> </cert/key/location>
-sudo chmod 0760>/0600 <cert/key/location>
+sudo chmod 0760/0600 <cert/key/location>
 ```
 
 ## Local Development
