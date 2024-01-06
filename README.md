@@ -53,19 +53,16 @@ Common Name (eg: your user, host, or server name): <UNIQUE_SERVER_DOMAIN_NAME>
 easyrsa sign-req serverClient <UNIQUE_SERVER_NAME>
 ```
 
-3. Copy the certificate/key pair to server
+3. Copy the certificate/key pair to server and move them to their designated location
 ```bash
 scp <path/to/cert/key> <user>@<server>:/home/<user>
+sudo mv </old/cert/location> <new/cert/key/location>
 ```
 
-4. On the server move the certificates to their designated location
-```bash
-sudo mv ~/</old/cert/location> <new/cert/key/location>
-```
-
-5. Make the files accessible by the processes
+4. Make the files accessible to the processes and set proper access permissions for certificates and keys
 ```bash
 sudo chown <server-user> </cert/key/location>
+sudo chmod 0760>/0600 <cert/key/location>
 ```
 
 ## Local Development
@@ -94,17 +91,17 @@ If you have an development server in your private network
 
 ```bash
 # local development server for festivalsapp
-<identity server ip address>	identity-0.festivalsapp.home
-<festivals server 0 ip address>	festivals-0.festivalsapp.home
-<festivals server 1 ip address>	festivals-1.festivalsapp.home
-<database ip address>	        database-0.festivalsapp.home
-<fileserver ip address>	        fileserver-0.festivalsapp.home
-<website-node ip address>	    website-0.festivalsapp.home
+<ip address>	      identity-0.festivalsapp.home
+<ip address>	      festivals-0.festivalsapp.home
+<ip address>	      festivals-1.festivalsapp.home
+<ip address>	      database-0.festivalsapp.home
+<ip address>        fileserver-0.festivalsapp.home
+<ip address>        website-0.festivalsapp.home
+<ip address>        gateway.festivalsapp.home
 
 <gateway ip address>            festivalsapp.home
 <gateway ip address>            www.festivalsapp.home
 <gateway ip address>            website.festivalsapp.home
-<gateway ip address>            gateway.festivalsapp.home
 <gateway ip address>            discovery.festivalsapp.home
 <gateway ip address>            api.festivalsapp.home
 <gateway ip address>            files.festivalsapp.home
