@@ -56,3 +56,17 @@ func LoadX509Certificate(certFile string) (*x509.Certificate, error) {
 	}
 	return cert, nil
 }
+
+// Creates and returns a certificate pool with the given certificate added to it.
+func LoadCertificatePool(certFile string) (*x509.CertPool, error) {
+
+	rootCertPool := x509.NewCertPool()
+	certContent, err := os.ReadFile(certFile)
+	if err != nil {
+		return nil, err
+	}
+	if ok := rootCertPool.AppendCertsFromPEM(certContent); !ok {
+		return nil, errors.New("Failed to append certificate to certificate pool.")
+	}
+	return rootCertPool, nil
+}
