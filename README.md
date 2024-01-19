@@ -59,13 +59,22 @@ openssl x509 -in cert.crt -out cert.pem -outform PEM
 openssl rsa -in cert.key -text > cert-key.pem
 ```
 
-3. Copy the certificate/key pair to server and move them to their designated location
+2.2 Optionally convert certificates and keys to DER format and .p12 keystore file (for usage with swift)
+```bash
+# Convert from .crt to .pem to .der
+openssl x509 -in cert.crt -out cert.pem -outform PEM
+openssl x509 -in cert.pem -out cert.der -outform der
+# Using -legacy for compability with macOS/iOS. Use at least a 20 character random password for the keystore file.
+openssl pkcs12 -export -legacy -in cert.crt -inkey cert.key -out cert.p12
+``` 
+
+1. Copy the certificate/key pair to server and move them to their designated location
 ```bash
 scp <path/to/cert/key> <user>@<server>:/home/<user>
 sudo mv </old/cert/location> <new/cert/key/location>
 ```
 
-4. Make the files accessible to the processes and set proper access permissions for certificates and keys
+1. Make the files accessible to the processes and set proper access permissions for certificates and keys
 ```bash
 sudo chown <server-user> </cert/key/location>
 sudo chmod 640/600 <cert/key/location>
