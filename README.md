@@ -68,6 +68,13 @@ openssl x509 -in cert.pem -out cert.der -outform der
 openssl pkcs12 -export -legacy -in cert.crt -inkey cert.key -out cert.p12
 ``` 
 
+2.3 Optionally
+```bash
+# Convert from .crt to .pem public key
+openssl x509 -pubkey -noout -in server.crt > pubkey.pem
+openssl rsa -in server.key -text > privkey.pem
+```
+
 1. Copy the certificate/key pair to server and move them to their designated location
 ```bash
 scp <path/to/cert/key> <user>@<server>:/home/<user>
