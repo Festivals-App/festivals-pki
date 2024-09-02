@@ -21,7 +21,7 @@ The festivals pki repository contains descriptions, workflows and go modules to 
 </p>
 <hr/>
 
-To secure communication between components the `FestivalsApp` uses [mTLS](https://www.cloudflare.com/learning/access-management/what-is-mutual-tls/) with self signed certificates. 
+To secure communication between components the `FestivalsApp` uses [mTLS](https://www.cloudflare.com/learning/access-management/what-is-mutual-tls/) with self signed certificates.
 First we need to create a certificate authority (CA) to issue certificates, then we create a certificate for each service and client.
 You can read more about the exact procedures in the [Certification Practice Statements](CERTIFICATIONPRACTICE.md) document.
 
@@ -32,18 +32,21 @@ Even tho the details are quite complex, at the basis of a certificate authority 
 The idea is that every party that is communicating with each other needs a certificate signed with this root certificate.
 
 1. First we need to install `easy-rsa` and create the FestivalsApp Root CA.
-```bash
-# installing the easy-rsa on macOS
-brew install easy-rsa
 
-# init the pki
-easyrsa init-pki
-# Create our root CA certificate (use at least a 40 character random password for the key file)
-easyrsa build-ca
-```
-On macOS this will create all neccessary files at `/opt/homebrew/etc/pki`
+  ```bash
+  # installing the easy-rsa on macOS
+  brew install easy-rsa
+
+  # init the pki
+  easyrsa init-pki
+  # Create our root CA certificate (use at least a 40 character random password for the key file)
+  easyrsa build-ca
+  ```
+
+  On macOS this will create all neccessary files at `/opt/homebrew/etc/pki`
 
 2. To create a certificate/key pair for inter-service communication we first create a certificate request with the name of the service node and then sign the request.
+
 ```bash
 # create signing request
 easyrsa gen-req <UNIQUE_SERVER_NAME> nopass
@@ -54,21 +57,24 @@ easyrsa sign-req serverClient <UNIQUE_SERVER_NAME>
 ```
 
 2.1 Optionally convert certificates and keys to PEM format (for example for usage with mysql)
+
 ```bash
 openssl x509 -in cert.crt -out cert.pem -outform PEM
 openssl rsa -in cert.key -text > cert-key.pem
 ```
 
 2.2 Optionally convert certificates and keys to DER format and .p12 keystore file (for usage with swift)
+
 ```bash
 # Convert from .crt to .pem to .der
 openssl x509 -in cert.crt -out cert.pem -outform PEM
 openssl x509 -in cert.pem -out cert.der -outform der
 # Using -legacy for compability with macOS/iOS. Use at least a 20 character random password for the keystore file.
 openssl pkcs12 -export -legacy -in cert.crt -inkey cert.key -out cert.p12
-``` 
+```
 
 2.3 Optionally
+
 ```bash
 # Convert from .crt to .pem public key
 openssl x509 -pubkey -noout -in server.crt > pubkey.pem
@@ -76,21 +82,25 @@ openssl rsa -in server.key -text > privkey.pem
 ```
 
 1. Copy the certificate/key pair to server and move them to their designated location
+
 ```bash
 scp <path/to/cert/key> <user>@<server>:/home/<user>
 sudo mv </old/cert/location> <new/cert/key/location>
 ```
 
 1. Make the files accessible to the processes and set proper access permissions for certificates and keys
+
 ```bash
 sudo chown <server-user> </cert/key/location>
 sudo chmod 640/600 <cert/key/location>
 ```
 
 ## Local Development
+
 If you want to test on your local machine
 
 sudo nano /etc/hosts
+
 ```bash
 # local development on this machine
 127.0.0.1       gateway.festivalsapp.dev
@@ -109,15 +119,16 @@ sudo nano /etc/hosts
 ```
 
 ## Development on a test server
+
 If you have an development server in your private network
 
 ```bash
 # local development server for festivalsapp
 <ip address>        gateway.festivalsapp.home
-<ip address>	      identity-0.festivalsapp.home
-<ip address>	      festivals-0.festivalsapp.home
-<ip address>	      festivals-1.festivalsapp.home
-<ip address>	      database-0.festivalsapp.home
+<ip address>       identity-0.festivalsapp.home
+<ip address>       festivals-0.festivalsapp.home
+<ip address>       festivals-1.festivalsapp.home
+<ip address>       database-0.festivalsapp.home
 <ip address>        fileserver-0.festivalsapp.home
 <ip address>        website-0.festivalsapp.home
 
@@ -134,10 +145,13 @@ If you have an development server in your private network
 Add the FestivalsaApp Root CA certificate to the trusted root certificates:
 
 ### macOS
+
 ```bash
 sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/new-root-certificate.crt
 ```
+
 ### Linux (Ubuntu)
+
 ```bash
 sudo cp new-root-certificate.crt /usr/local/share/ca-certificates/new-root-certificate.crt
 sudo update-ca-certificates
@@ -160,11 +174,9 @@ Copyright (c) 2023-2024 Simon Gaus.
 
 Licensed under the **GNU Lesser General Public License v3.0** (the "License"); you may not use this file except in compliance with the License.
 
-You may obtain a copy of the License at https://www.gnu.org/licenses/lgpl-3.0.html.
+You may obtain a copy of the License at <https://www.gnu.org/licenses/lgpl-3.0.html>.
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the [LICENSE](./LICENSE) for the specific language governing permissions and limitations under the License.
 
-
-
-https://docs.bigchaindb.com/projects/server/en/v1.1.0/production-deployment-template/easy-rsa.html#how-to-install-configure-easy-rsa
+<https://docs.bigchaindb.com/projects/server/en/v1.1.0/production-deployment-template/easy-rsa.html#how-to-install-configure-easy-rsa>
 openssl rsa -in /opt/homebrew/etc/pki/private/gateway-server.key -out /opt/homebrew/etc/pki/private/gateway-server-unencrypted.key
