@@ -1,6 +1,7 @@
 <p align="center">
    <a href="https://github.com/festivals-app/festivals-pki/commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/festivals-app/festivals-identity-server?style=flat"></a>
    <a href="https://github.com/festivals-app/festivals-pki/issues" title="Open Issues"><img src="https://img.shields.io/github/issues/festivals-app/festivals-identity-server?style=flat"></a>
+   <a href="https://github.com/festivals-app/festivals-pki" title="SLSA Level 1"><img src="https://img.shields.io/badge/SLSA-Level_1-blue"></a>
    <a href="./LICENSE" title="License"><img src="https://img.shields.io/github/license/festivals-app/festivals-pki.svg"></a>
 </p>
 
