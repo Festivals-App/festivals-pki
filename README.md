@@ -12,6 +12,8 @@
 
 The festivals pki repository contains descriptions, workflows and go modules to ensure secure communication between all components of the FestivalsApp.
 
+![Figure 1: Architecture Overview Highlighted](https://github.com/Festivals-App/festivals-documentation/blob/main/images/architecture/architecture_overview_pki.svg "Figure 1: Architecture Overview Highlighted")
+
 <hr/>
 <p align="center">
   <a href="#development">Development</a> •
