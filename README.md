@@ -54,7 +54,7 @@ easyrsa gen-req <UNIQUE_SERVER_NAME> nopass
 # Enter <UNIQUE_SERVER_DOMAIN_NAME>
 Common Name (eg: your user, host, or server name): <UNIQUE_SERVER_DOMAIN_NAME>
 # sign the request
-easyrsa sign-req serverClient <UNIQUE_SERVER_NAME>
+easyrsa --subject-alt-name="DNS:<UNIQUE_SERVER_DOMAIN_NAME>" sign-req serverClient <UNIQUE_SERVER_NAME>
 ```
 
 2.1 Optionally convert certificates and keys to PEM format (for example for usage with mysql)
@@ -125,13 +125,13 @@ If you have an development server in your private network
 
 ```bash
 # local development server for festivalsapp
-<ip address>        gateway.festivalsapp.home
+<ip address>       gateway.festivalsapp.home
 <ip address>       identity-0.festivalsapp.home
 <ip address>       festivals-0.festivalsapp.home
 <ip address>       festivals-1.festivalsapp.home
 <ip address>       database-0.festivalsapp.home
-<ip address>        fileserver-0.festivalsapp.home
-<ip address>        website-0.festivalsapp.home
+<ip address>       fileserver-0.festivalsapp.home
+<ip address>       website-0.festivalsapp.home
 
 <gateway ip address>            festivalsapp.home
 <gateway ip address>            www.festivalsapp.home
