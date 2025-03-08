@@ -55,6 +55,8 @@ easyrsa gen-req <UNIQUE_SERVER_NAME> nopass
 Common Name (eg: your user, host, or server name): <UNIQUE_SERVER_DOMAIN_NAME>
 # sign the request
 easyrsa --subject-alt-name="DNS:<UNIQUE_SERVER_DOMAIN_NAME>" sign-req serverClient <UNIQUE_SERVER_NAME>
+# or sign a client request
+easyrsa sign-req client <UNIQUE_SERVER_NAME>
 ```
 
 2.1 Optionally convert certificates and keys to PEM format (for example for usage with mysql)
@@ -145,13 +147,13 @@ If you have an development server in your private network
 
 Add the FestivalsaApp Root CA certificate to the trusted root certificates:
 
-### macOS
+## macOS
 
 ```bash
 sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/new-root-certificate.crt
 ```
 
-### Linux (Ubuntu)
+## Linux (Ubuntu)
 
 ```bash
 sudo cp new-root-certificate.crt /usr/local/share/ca-certificates/new-root-certificate.crt
@@ -167,11 +169,11 @@ The following channels are available for discussions, feedback, and support requ
 | Type                     | Channel                                                |
 | ------------------------ | ------------------------------------------------------ |
 | **General Discussion**   | <a href="https://github.com/festivals-app/festivals-documentation/issues/new/choose" title="General Discussion"><img src="https://img.shields.io/github/issues/festivals-app/festivals-documentation/question.svg?style=flat-square"></a> </a>   |
-| **Other Requests**    | <a href="mailto:simon.cay.gaus@gmail.com" title="Email me"><img src="https://img.shields.io/badge/email-Simon-green?logo=mail.ru&style=flat-square&logoColor=white"></a>   |
+| **Other Requests**    | <a href="mailto:simon@festivalsapp.org" title="Email me"><img src="https://img.shields.io/badge/email-Simon-green?logo=mail.ru&style=flat-square&logoColor=white"></a>   |
 
-## Licensing
+### Licensing
 
-Copyright (c) 2023-2024 Simon Gaus. Licensed under the [**GNU Lesser General Public License v3.0**](./LICENSE)
+Copyright (c) 2023-2025 Simon Gaus. Licensed under the [**GNU Lesser General Public License v3.0**](./LICENSE)
 
 <https://docs.bigchaindb.com/projects/server/en/v1.1.0/production-deployment-template/easy-rsa.html#how-to-install-configure-easy-rsa>
 openssl rsa -in /opt/homebrew/etc/pki/private/gateway-server.key -out /opt/homebrew/etc/pki/private/gateway-server-unencrypted.key
