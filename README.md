@@ -34,69 +34,69 @@ The idea is that every party that is communicating with each other needs a certi
 
 1. First we need to install `easy-rsa` and create the FestivalsApp Root CA.
 
-  ```bash
-  # installing the easy-rsa on macOS
-  brew install easy-rsa
+   ```bash
+   # installing the easy-rsa on macOS
+   brew install easy-rsa
+   
+   # init the pki
+   easyrsa init-pki
+   # Create our root CA certificate (use at least a 40 character random password for the key file)
+   easyrsa build-ca
+   ```
 
-  # init the pki
-  easyrsa init-pki
-  # Create our root CA certificate (use at least a 40 character random password for the key file)
-  easyrsa build-ca
-  ```
-
-  On macOS this will create all neccessary files at `/opt/homebrew/etc/pki`
+   On macOS this will create all neccessary files at `/opt/homebrew/etc/pki`
 
 2. To create a certificate/key pair for inter-service communication we first create a certificate request with the name of the service node and then sign the request.
 
-```bash
-# create signing request
-easyrsa gen-req <UNIQUE_SERVER_NAME> nopass
-# Enter <UNIQUE_SERVER_DOMAIN_NAME>
-Common Name (eg: your user, host, or server name): <UNIQUE_SERVER_DOMAIN_NAME>
-# sign the request
-easyrsa --subject-alt-name="DNS:<UNIQUE_SERVER_DOMAIN_NAME>" sign-req serverClient <UNIQUE_SERVER_NAME>
-# or sign a client request
-easyrsa sign-req client <UNIQUE_SERVER_NAME>
-```
+   ```bash
+   # create signing request
+   easyrsa gen-req <UNIQUE_SERVER_NAME> nopass
+   # Enter <UNIQUE_SERVER_DOMAIN_NAME>
+   Common Name (eg: your user, host, or server name): <UNIQUE_SERVER_DOMAIN_NAME>
+   # sign the service request
+   easyrsa --subject-alt-name="DNS:<UNIQUE_SERVER_DOMAIN_NAME>" sign-req serverClient <UNIQUE_SERVER_NAME>
+   # or sign a client request
+   easyrsa sign-req client <UNIQUE_SERVER_NAME>
+   ```
 
-2.1 Optionally convert certificates and keys to PEM format (for example for usage with mysql)
+   2.1 Optionally convert certificates and keys to PEM format (for example for usage with mysql)
 
-```bash
-openssl x509 -in cert.crt -out cert.pem -outform PEM
-openssl rsa -in cert.key -text > cert-key.pem
-```
+   ```bash
+   openssl x509 -in cert.crt -out cert.pem -outform PEM
+   openssl rsa -in cert.key -text > cert-key.pem
+   ```
 
-2.2 Optionally convert certificates and keys to DER format and .p12 keystore file (for usage with swift)
+   2.2 Optionally convert certificates and keys to DER format and .p12 keystore file (for usage with swift)
 
-```bash
-# Convert from .crt to .pem to .der
-openssl x509 -in cert.crt -out cert.pem -outform PEM
-openssl x509 -in cert.pem -out cert.der -outform der
-# Using -legacy for compability with macOS/iOS. Use at least a 20 character random password for the keystore file.
-openssl pkcs12 -export -legacy -in cert.crt -inkey cert.key -out cert.p12
-```
+   ```bash
+   # Convert from .crt to .pem to .der
+   openssl x509 -in cert.crt -out cert.pem -outform PEM
+   openssl x509 -in cert.pem -out cert.der -outform der
+   # Using -legacy for compability with macOS/iOS. Use at least a 20 character random password for the keystore file.
+   openssl pkcs12 -export -legacy -in cert.crt -inkey cert.key -out cert.p12
+   ```
 
-2.3 Optionally
+   2.3 Optionally convert certificates and keys from CRT to PEM
 
-```bash
-# Convert from .crt to .pem public key
-openssl x509 -pubkey -noout -in server.crt > pubkey.pem
-openssl rsa -in server.key -text > privkey.pem
-```
+   ```bash
+   # Convert from .crt to .pem public key
+   openssl x509 -pubkey -noout -in server.crt > pubkey.pem
+   openssl rsa -in server.key -text > privkey.pem
+   ```
 
-1. Copy the certificate/key pair to server and move them to their designated location
+3. Copy the certificate/key pair to server and move them to their designated location
 
-```bash
-scp <path/to/cert/key> <user>@<server>:/home/<user>
-sudo mv </old/cert/location> <new/cert/key/location>
-```
+   ```bash
+   scp <path/to/cert/key> <user>@<server>:/home/<user>
+   sudo mv </old/cert/location> <new/cert/key/location>
+   ```
 
-1. Make the files accessible to the processes and set proper access permissions for certificates and keys
+4. Make the files accessible to the processes and set proper access permissions for certificates and keys
 
-```bash
-sudo chown <server-user> </cert/key/location>
-sudo chmod 640/600 <cert/key/location>
-```
+   ```bash
+   sudo chown <service-user> </cert/key/location>
+   sudo chmod 640/600 <cert/key/location>
+   ```
 
 ## Local Development
 
