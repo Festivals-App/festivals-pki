@@ -2,10 +2,35 @@ package festivalspki_test
 
 import (
 	"crypto/tls"
+	"fmt"
 	"testing"
 
 	festivalspki "github.com/Festivals-App/festivals-pki"
 )
+
+// TestNewServerTLSConfig tests the initialization of tls.Config with test certificates.
+func TestNewServerTLSConfig(t *testing.T) {
+	serverCert := "certificates/festivalsapp.dev.crt"
+	serverKey := "certificates/festivalsapp.dev.key"
+	clientCA := "certificates/festivalsapp-development-root-ca.crt"
+	tlsConfig, err := festivalspki.NewServerTLSConfig(serverCert, serverKey, clientCA)
+
+	if err != nil {
+		t.Fatalf("❌ NewServerTLSConfig failed: %v", err)
+	}
+	if tlsConfig.ClientAuth != tls.RequireAndVerifyClientCert {
+		t.Errorf("❌ Expected ClientAuth to be RequireAndVerifyClientCert, got %v", tlsConfig.ClientAuth)
+	}
+	if len(tlsConfig.Certificates) == 0 {
+		t.Errorf("❌ Expected server certificate to be loaded, but found none")
+	}
+	if tlsConfig.ClientCAs == nil {
+		t.Errorf("❌ Expected ClientCAs to be set, but it is nil")
+	}
+	if err == nil && len(tlsConfig.Certificates) > 0 && tlsConfig.ClientCAs != nil {
+		fmt.Println("✅ NewServerTLSConfig successfully loaded certificates and initialized tls.Config")
+	}
+}
 
 func TestLoadServerCertificateChainHandler(t *testing.T) {
 
