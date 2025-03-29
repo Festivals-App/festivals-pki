@@ -45,6 +45,27 @@ func LoadServerCertificateChain(serverCert string, serverKey string, rootCACert 
 	return &certificate, nil
 }
 
+// NewServerTLSConfig creates and returns a secure TLS configuration suited to be used by a server.
+func NewServerTLSConfig(serverCert string, serverKey string, clientCA string) (*tls.Config, error) {
+
+	clientCAcertPool, err := LoadCertificatePool(clientCA)
+	if err != nil {
+		return nil, errors.New("failed to load client ca certificate pool with error: " + err.Error())
+	}
+
+	serverKeyPair, err := LoadServerCertificate(serverCert, serverKey)
+	if err != nil {
+		return nil, errors.New("failed to load server certificate with error: " + err.Error())
+	}
+
+	return &tls.Config{
+		ClientAuth:   tls.RequireAndVerifyClientCert,
+		Certificates: []tls.Certificate{*serverKeyPair},
+		ClientCAs:    clientCAcertPool,
+		//MinVersion:   tls.VersionTLS12,
+	}, nil
+}
+
 // LoadServerCertificates will attempt to load the given server certificate and key.
 func LoadServerCertificate(serverCert string, serverKey string) (*tls.Certificate, error) {
 	certificate, err := tls.LoadX509KeyPair(serverCert, serverKey)
