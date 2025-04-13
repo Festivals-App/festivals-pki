@@ -57,6 +57,8 @@ The idea is that every party that is communicating with each other needs a certi
    easyrsa --subject-alt-name="DNS:<UNIQUE_SERVER_DOMAIN_NAME>,DNS:<UNIQUE_SERVER_SUB_DOMAIN_NAME>" sign-req serverClient <UNIQUE_SERVER_NAME>
    # or sign a client request
    easyrsa sign-req client <UNIQUE_SERVER_NAME>
+   # or sign a code-signing request
+   easyrsa sign-req code-signing <UNIQUE_SERVER_NAME>
    ```
 
    2.1 Optionally convert certificates and keys to PEM format (for example for usage with mysql)
