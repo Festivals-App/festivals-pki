@@ -54,7 +54,7 @@ The idea is that every party that is communicating with each other needs a certi
    # Enter <UNIQUE_SERVER_DOMAIN_NAME>
    Common Name (eg: your user, host, or server name): <UNIQUE_SERVER_DOMAIN_NAME>
    # sign the service request
-   easyrsa --subject-alt-name="DNS:<UNIQUE_SERVER_DOMAIN_NAME>" sign-req serverClient <UNIQUE_SERVER_NAME>
+   easyrsa --subject-alt-name="DNS:<UNIQUE_SERVER_DOMAIN_NAME>,DNS:<UNIQUE_SERVER_SUB_DOMAIN_NAME>" sign-req serverClient <UNIQUE_SERVER_NAME>
    # or sign a client request
    easyrsa sign-req client <UNIQUE_SERVER_NAME>
    ```
