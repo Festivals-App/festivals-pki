@@ -27,7 +27,7 @@ func TestNewServerTLSConfig(t *testing.T) {
 	if tlsConfig.ClientCAs == nil {
 		t.Errorf("❌ Expected ClientCAs to be set, but it is nil")
 	}
-	if err == nil && len(tlsConfig.Certificates) > 0 && tlsConfig.ClientCAs != nil {
+	if len(tlsConfig.Certificates) > 0 && tlsConfig.ClientCAs != nil {
 		fmt.Println("✅ NewServerTLSConfig successfully loaded certificates and initialized tls.Config")
 	}
 }
